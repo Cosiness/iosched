@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2014 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/float_action_bar"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/float_action_bar_height"
+    android:gravity="center_vertical">
+
+    <com.vinerylink.al.views.CustomFontTextView
+        android:id="@+id/quick_return_footer_tv"
+        android:layout_width="wrap_content"
+        android:padding="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_rounded_rectangle_transparent_black"
+        android:textSize="14sp"
+        android:text="New Posts! Touch to see them"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        app:textFont="Roboto_Bold"
+        />
+
+    <ImageView
+        android:id="@+id/quick_return_footer_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:src="@drawable/ic_action_edit_red"
+        android:background="@drawable/shape_circle_white"
+        android:padding="16dp"
+        android:layout_marginRight="20dp"
+        />
+</FrameLayout>

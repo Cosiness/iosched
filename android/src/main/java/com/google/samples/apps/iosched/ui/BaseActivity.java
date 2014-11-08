@@ -50,6 +50,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -131,6 +132,7 @@ public abstract class BaseActivity extends ActionBarActivity implements
     // to implement the "quick recall" effect (the Action Bar and the header views disappear
     // when you scroll down a list, and reappear quickly when you scroll up).
     private ArrayList<View> mHideableHeaderViews = new ArrayList<View>();
+    private ArrayList<View> mHideableFooterViews = new ArrayList<View>();
 
     // Durations for certain animations we use:
     private static final int HEADER_HIDE_ANIM_DURATION = 300;
@@ -1497,6 +1499,18 @@ public abstract class BaseActivity extends ActionBarActivity implements
         }
     }
 
+    protected void registerHideableFooterView(View hideableFooterView) {
+        if (!mHideableFooterViews.contains(hideableFooterView)) {
+            mHideableFooterViews.add(hideableFooterView);
+        }
+    }
+
+    protected void deregisterHideableFotterView(View hideableFooterView) {
+        if (mHideableFooterViews.contains(hideableFooterView)) {
+            mHideableFooterViews.remove(hideableFooterView);
+        }
+    }
+
     public LUtils getLUtils() {
         return mLUtils;
     }
@@ -1550,6 +1564,31 @@ public abstract class BaseActivity extends ActionBarActivity implements
                         .setInterpolator(new DecelerateInterpolator());
             }
         }
+
+        int dismissTop = getScreenHeight();
+        for (View view : mHideableFooterViews) {
+            if (shown) {
+                view.animate()
+                        .translationY(0)
+                        .alpha(1)
+                        .setDuration(HEADER_HIDE_ANIM_DURATION)
+                        .setInterpolator(new DecelerateInterpolator());
+            } else {
+                view.animate()
+                        .translationY(dismissTop)
+                        .alpha(0)
+                        .setDuration(HEADER_HIDE_ANIM_DURATION)
+                        .setInterpolator(new DecelerateInterpolator());
+            }
+        }
+    }
+
+    private int getScreenHeight() {
+//        DisplayMetrics dm = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//        return dm.heightPixels;
+
+        return getWindow().getDecorView().getBottom();
     }
 
     @Override

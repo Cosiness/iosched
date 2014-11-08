@@ -526,6 +526,23 @@ public class UIUtils {
         butterBar.setVisibility(View.VISIBLE);
     }
 
+    public static void setUpFloatActionBar(View floatActionBar, View.OnClickListener leftListener,
+                                           View.OnClickListener rightListener) {
+        if (null == floatActionBar) {
+            LOGE(TAG, "Failed to set up float action bar: it's null.");
+        }
+
+        View view = floatActionBar.findViewById(R.id.quick_return_footer_tv);
+        if (null != view) {
+            view.setOnClickListener(leftListener);
+        }
+
+        view = floatActionBar.findViewById(R.id.quick_return_footer_iv);
+        if (null != rightListener) {
+            view.setOnClickListener(rightListener);
+        }
+    }
+
     public static float getProgress(int value, int min, int max) {
         if (min == max) {
             throw new IllegalArgumentException("Max (" + max + ") cannot equal min (" + min + ")");
