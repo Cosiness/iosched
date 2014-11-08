@@ -40,6 +40,7 @@ import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.model.TagMetadata;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
 import com.google.samples.apps.iosched.ui.BaseActivity;
+import com.google.samples.apps.iosched.ui.BrowseSessionsActivity;
 import com.google.samples.apps.iosched.ui.SearchActivity;
 import com.google.samples.apps.iosched.ui.SessionDetailActivity;
 import com.google.samples.apps.iosched.ui.widget.CollectionView;
@@ -147,16 +148,25 @@ public class BrowseStreamsActivity extends BaseActivity implements StreamsFragme
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(BrowseStreamsActivity.this, "Touch Text view to refresh.", Toast.LENGTH_SHORT).show();
+                        onFloatTextClicked();
                     }
                 },
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(BrowseStreamsActivity.this, "Click Image Button to add post.", Toast.LENGTH_SHORT).show();
+                        onFloatButtonClicked();
                     }
                 }
         );
+    }
+
+    private void onFloatButtonClicked() {
+        Toast.makeText(BrowseStreamsActivity.this, "Click Image Button to add post.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onFloatTextClicked() {
+        startActivity(new Intent(this, BrowseSessionsActivity.class));
+//        Toast.makeText(BrowseStreamsActivity.this, "Touch Text view to refresh.", Toast.LENGTH_SHORT).show();
     }
 
     @Override

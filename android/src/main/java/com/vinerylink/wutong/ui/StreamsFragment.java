@@ -191,11 +191,11 @@ public class StreamsFragment extends Fragment implements
     private void reloadSessionData(boolean fullReload) {
         LOGD(TAG, "Reloading session data: " + (fullReload ? "FULL RELOAD" : "light refresh"));
         mSessionDataIsFullReload = fullReload;
-        getLoaderManager().restartLoader(mSessionQueryToken, mArguments, StreamsFragment.this);
+        getLoaderManager().restartLoader(mSessionQueryToken, mArguments, this);
     }
 
     private void reloadTagMetadata() {
-        getLoaderManager().restartLoader(TAG_METADATA_TOKEN, null, StreamsFragment.this);
+        getLoaderManager().restartLoader(TAG_METADATA_TOKEN, null, this);
     }
 
     @Override
@@ -257,7 +257,7 @@ public class StreamsFragment extends Fragment implements
                 // Only if this is a config change should we initLoader(), to reconnect with an
                 // existing loader. Otherwise, the loader will be init'd when reloadFromArguments
                 // is called.
-                getLoaderManager().initLoader(mSessionQueryToken, null, StreamsFragment.this);
+                getLoaderManager().initLoader(mSessionQueryToken, null, this);
             }
         }
 
@@ -963,7 +963,7 @@ public class StreamsFragment extends Fragment implements
                     @Override
                     public void run() {
                         if (CARD_ANSWER_YES.equals(tag)) {
-                            WiFiUtils.showWiFiDialog(StreamsFragment.this.getActivity());
+                            WiFiUtils.showWiFiDialog(getActivity());
                         } else {
                             PrefUtils.markDeclinedWifiSetup(context);
                         }
@@ -994,7 +994,7 @@ public class StreamsFragment extends Fragment implements
                                     Uri.parse(Config.IO_EXTENDED_LINK));
                             startActivity(intent);
                         }
-                        PrefUtils.markDismissedIOExtendedCard(StreamsFragment.this.getActivity());
+                        PrefUtils.markDismissedIOExtendedCard(getActivity());
                     }
                 }, CARD_DISMISS_ACTION_DELAY);
             }

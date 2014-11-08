@@ -34,7 +34,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/shape_rounded_rectangle_transparent_black"
         android:textSize="14sp"
-        android:text="New Posts! Touch to see them"
+        android:text="@string/float_text_prompt_origin_session"
         android:textColor="@android:color/white"
         android:gravity="center"
         app:textFont="Roboto_Bold"
