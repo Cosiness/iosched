@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.BrowseSessionsActivity">
+    tools:context="com.vinerylink.wutong.ui.BrowseStreamsActivity">
 
     <!-- Main layout -->
     <com.google.samples.apps.iosched.ui.widget.DrawShadowFrameLayout
