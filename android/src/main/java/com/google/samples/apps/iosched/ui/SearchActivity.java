@@ -38,7 +38,7 @@ import com.vinerylink.wutong.ui.StreamsFragment;
 
 import static com.google.samples.apps.iosched.util.LogUtils.*;
 
-public class SearchActivity extends BaseActivity implements SessionsFragment.Callbacks {
+public class SearchActivity extends BaseActivity implements BaseSessionFragment.Callbacks {
     private static final String TAG = makeLogTag("SearchActivity");
 
     private final static String SCREEN_LABEL = "Search";

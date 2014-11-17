@@ -30,11 +30,11 @@ import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.model.TagMetadata;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
 import com.google.samples.apps.iosched.ui.BaseMapActivity;
+import com.google.samples.apps.iosched.ui.BaseSessionFragment;
 import com.google.samples.apps.iosched.ui.MapFragment;
 import com.google.samples.apps.iosched.ui.NearbyFragment;
 import com.google.samples.apps.iosched.ui.PartnersFragment;
 import com.google.samples.apps.iosched.ui.SessionDetailActivity;
-import com.google.samples.apps.iosched.ui.SessionsFragment;
 import com.google.samples.apps.iosched.util.AnalyticsManager;
 import com.google.samples.apps.iosched.util.UIUtils;
 
@@ -48,7 +48,7 @@ import static com.google.samples.apps.iosched.util.LogUtils.LOGD;
 public class MapMultiPaneActivity extends BaseMapActivity implements
         FragmentManager.OnBackStackChangedListener,
         MapFragment.Callbacks,
-        SessionsFragment.Callbacks {
+        BaseSessionFragment.Callbacks {
 
     private static final String SCREEN_LABEL = "MapMultipane";
 

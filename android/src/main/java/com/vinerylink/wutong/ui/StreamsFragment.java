@@ -300,11 +300,11 @@ public class StreamsFragment extends BaseSessionFragment implements
         // save arguments so we can reuse it when reloading from content observer events
         mArguments = arguments;
 
-        LOGD(TAG, "SessionsFragment reloading from arguments: " + arguments);
+        LOGD(TAG, "StreamsFragment reloading from arguments: " + arguments);
         mCurrentUri = arguments.getParcelable("_uri");
         if (mCurrentUri == null) {
             // if no URI, default to all sessions URI
-            LOGD(TAG, "SessionsFragment did not get a URL, defaulting to all sessions.");
+            LOGD(TAG, "StreamsFragment did not get a URL, defaulting to all sessions.");
             arguments.putParcelable("_uri", ScheduleContract.Sessions.CONTENT_URI);
             mCurrentUri = ScheduleContract.Sessions.CONTENT_URI;
         }
@@ -317,7 +317,7 @@ public class StreamsFragment extends BaseSessionFragment implements
             mSessionQueryToken = SessionsQuery.NORMAL_TOKEN;
         }
 
-        LOGD(TAG, "SessionsFragment reloading, uri=" + mCurrentUri + ", expanded=" + useExpandedMode());
+        LOGD(TAG, "StreamsFragment reloading, uri=" + mCurrentUri + ", expanded=" + useExpandedMode());
 
         reloadSessionData(true); // full reload
         if (mTagMetadata == null) {
@@ -473,7 +473,7 @@ public class StreamsFragment extends BaseSessionFragment implements
             // not ready!
             return;
         }
-        LOGD(TAG, "SessionsFragment updating CollectionView... " + (mSessionDataIsFullReload ?
+        LOGD(TAG, "StreamsFragment updating CollectionView... " + (mSessionDataIsFullReload ?
                 "(FULL RELOAD)" : "(light refresh)"));
         mCursor.moveToPosition(-1);
         int itemCount = mCursor.getCount();
