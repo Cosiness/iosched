@@ -34,6 +34,7 @@ import com.google.samples.apps.iosched.model.TagMetadata;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
 import com.google.samples.apps.iosched.ui.debug.actions.ShowFeedbackNotificationAction;
 import com.google.samples.apps.iosched.util.AnalyticsManager;
+import com.vinerylink.wutong.ui.StreamsFragment;
 
 import static com.google.samples.apps.iosched.util.LogUtils.*;
 
@@ -42,7 +43,7 @@ public class SearchActivity extends BaseActivity implements SessionsFragment.Cal
 
     private final static String SCREEN_LABEL = "Search";
 
-    SessionsFragment mSessionsFragment = null;
+    BaseSessionFragment mSessionsFragment = null;
 
     SearchView mSearchView = null;
     String mQuery = "";
@@ -65,14 +66,19 @@ public class SearchActivity extends BaseActivity implements SessionsFragment.Cal
         });
 
         FragmentManager fm = getFragmentManager();
-        mSessionsFragment = (SessionsFragment) fm.findFragmentById(R.id.fragment_container);
+        mSessionsFragment = (BaseSessionFragment) fm.findFragmentById(R.id.fragment_container);
 
         String query = getIntent().getStringExtra(SearchManager.QUERY);
         query = query == null ? "" : query;
         mQuery = query;
 
         if (mSessionsFragment == null) {
-            mSessionsFragment = new SessionsFragment();
+            String flag = getIntent().getStringExtra(SearchManager.APP_DATA);
+            if (TextUtils.isEmpty(flag)) {
+                mSessionsFragment = new SessionsFragment();
+            } else {
+                mSessionsFragment = new StreamsFragment();
+            }
             Bundle args = intentToFragmentArguments(
                     new Intent(Intent.ACTION_VIEW, ScheduleContract.Sessions.buildSearchUri(query)));
             mSessionsFragment.setArguments(args);

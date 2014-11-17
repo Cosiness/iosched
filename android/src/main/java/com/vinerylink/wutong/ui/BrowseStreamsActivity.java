@@ -16,6 +16,7 @@
 
 package com.vinerylink.wutong.ui;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
@@ -546,7 +547,10 @@ public class BrowseStreamsActivity extends BaseActivity implements StreamsFragme
                  * [/ANALYTICS]
                  */
                 AnalyticsManager.sendEvent(SCREEN_LABEL, "launchsearch", "");
-                startActivity(new Intent(this, SearchActivity.class));
+
+                Intent searchIntent = new Intent(this, SearchActivity.class);
+                searchIntent.putExtra(SearchManager.APP_DATA, "STREAM");
+                startActivity(searchIntent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

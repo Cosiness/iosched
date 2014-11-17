@@ -53,6 +53,7 @@ import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.model.TagMetadata;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
 import com.google.samples.apps.iosched.ui.BaseActivity;
+import com.google.samples.apps.iosched.ui.BaseSessionFragment;
 import com.google.samples.apps.iosched.ui.widget.CollectionView;
 import com.google.samples.apps.iosched.ui.widget.CollectionViewCallbacks;
 import com.google.samples.apps.iosched.ui.widget.MessageCardView;
@@ -81,7 +82,7 @@ import static com.google.samples.apps.iosched.util.UIUtils.buildStyledSnippet;
  * indicate what is the list of sessions to show. It may be a set of tag
  * filters or a search query.
  */
-public class StreamsFragment extends Fragment implements
+public class StreamsFragment extends BaseSessionFragment implements
         LoaderManager.LoaderCallbacks<Cursor>, CollectionViewCallbacks {
 
     private static final String TAG = makeLogTag(StreamsFragment.class);
@@ -216,11 +217,6 @@ public class StreamsFragment extends Fragment implements
         }
     }
 
-    public interface Callbacks {
-        public void onSessionSelected(String sessionId, View clickedView);
-        public void onTagMetadataLoaded(TagMetadata metadata);
-    }
-
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
         public void onSessionSelected(String sessionId, View clickedView) {}
@@ -291,7 +287,8 @@ public class StreamsFragment extends Fragment implements
         return root;
     }
 
-    void reloadFromArguments(Bundle arguments) {
+    @Override
+    public void reloadFromArguments(Bundle arguments) {
         // Load new arguments
         if (arguments == null) {
             arguments = new Bundle();
@@ -328,7 +325,8 @@ public class StreamsFragment extends Fragment implements
         }
     }
 
-    void requestQueryUpdate(String query) {
+    @Override
+    public void requestQueryUpdate(String query) {
         mHandler.removeMessages(MESSAGE_QUERY_UPDATE);
         mHandler.sendMessageDelayed(Message.obtain(mHandler, MESSAGE_QUERY_UPDATE, query),
                 QUERY_UPDATE_DELAY_MILLIS);
